@@ -1,11 +1,11 @@
 import React from "react";
 import { NAME, POSITION } from "@/constants";
-import { getIntroData } from "@/services/getIntroData";
+import { getLeftData } from "@/services/getIntroData";
 import Icon from "@/icons/icons";
 
 const NAVS = ["about", "experience", "projects"];
 const LeftComponent = async () => {
-  const { socials, aboutMe } = await getIntroData();
+  const { socials, aboutMe } = await getLeftData();
   return (
     <header
       className={
@@ -19,13 +19,14 @@ const LeftComponent = async () => {
             href={"/"}
             className="text-4xl font-bold sm:text-5xl tracking-tight	text-slate-200"
           >
-            {NAME.full}
+            {aboutMe.personalName ?? NAME.full}
           </a>
           <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
-            {POSITION}
+            {aboutMe.designation ?? POSITION}
           </h2>
           <p className="mt-4 max-w-xs leading-normal">
-            I build exceptional and accessible digital experiences for the web.
+            {aboutMe.oneLiner ??
+              "I build exceptional and accessible digital experiences for the web."}
           </p>
         </div>
         {/*Nav*/}
