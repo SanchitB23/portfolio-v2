@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logo: React.FC = () => (
+const LogoLoader: React.FC = () => (
   <svg
     id="logo"
     version="1.0"
@@ -30,7 +30,14 @@ l205 -118 0 -240 0 -239 -312 -180 -312 -181 82 -47 c45 -26 186 -108 312
 -91 0 1254 0 1254 153 -88 c83 -49 244 -142 357 -208z"
       />
     </g>
+    <animateTransform
+      attributeName="transform"
+      type="scale"
+      dur="1s"
+      values="1; 1.25; 1.5; 1.5;1.25; 1;"
+      repeatCount="3"
+    ></animateTransform>
   </svg>
 );
 
-export default Logo;
+export default LogoLoader;
