@@ -49,3 +49,40 @@ export async function getLeftData() {
     aboutMe,
   };
 }
+
+export async function getExpData() {
+  const promise = await fetch(
+    `${CMS_BASE_URL}spaces/s3ihk2ts57lt/entries?content_type=jobs&order=-fields.from`,
+    {
+      cache: "default",
+      headers: {
+        Authorization: `Bearer ${process.env.CONTENTFUL_TOKEN}`,
+      },
+    },
+  );
+  if (!promise.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+  const res = await promise.json();
+  return res.items.map(({ fields }: { fields: IJobs[] }) => fields) as IJobs[];
+}
+export async function getProjectsData() {
+  const promise = await fetch(
+    `${CMS_BASE_URL}spaces/s3ihk2ts57lt/entries?content_type=projects&fields.featured=true`,
+    {
+      cache: "default",
+      headers: {
+        Authorization: `Bearer ${process.env.CONTENTFUL_TOKEN}`,
+      },
+    },
+  );
+  if (!promise.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+  const res = await promise.json();
+  return res.items.map(
+    ({ fields }: { fields: IFeaturedProjects[] }) => fields,
+  ) as IFeaturedProjects[];
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { NAME, POSITION } from "@/constants";
-import { getLeftData } from "@/services/getIntroData";
+import { getLeftData } from "@/services";
 import Icon from "@/icons/icons";
 
 const NAVS = ["about", "experience", "projects"];
