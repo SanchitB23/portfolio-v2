@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { VisualEditing } from "next-sanity";
+import { isLiveEditingEnabled, isVisualEditingEnabled } from "@/constants";
+import { SanityLive } from "@/sanity/lib/live";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +31,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {isVisualEditingEnabled ? <VisualEditing /> : null}
+        {isLiveEditingEnabled ? <SanityLive /> : null}
       </body>
     </html>
   );
