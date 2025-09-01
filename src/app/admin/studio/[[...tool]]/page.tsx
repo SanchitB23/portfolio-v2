@@ -8,7 +8,7 @@
  */
 
 import { NextStudio } from "next-sanity/studio";
-import config from "../../../../sanity.config";
+import config from "../../../../../sanity.config";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-static";

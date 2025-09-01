@@ -12,26 +12,20 @@ export const projectId = assertValue(
 );
 
 export const isVisualEditingEnabled =
-  assertValue(
-    process.env.NEXT_PUBLIC_ENABLE_VISUAL_EDITING,
-    "Missing environment variable: NEXT_PUBLIC_ENABLE_VISUAL_EDITING"
-  ) || false;
+  process.env.NEXT_PUBLIC_ENABLE_VISUAL_EDITING || false;
 
 export const isLiveEditingEnabled =
-  assertValue(
-    process.env.NEXT_PUBLIC_ENABLE_LIVE_EDITING,
-    "Missing environment variable: NEXT_PUBLIC_ENABLE_LIVE_EDITING"
-  ) || false;
+  process.env.NEXT_PUBLIC_ENABLE_LIVE_EDITING || false;
 
 export const siteUrl = assertValue(
   process.env.NEXT_PUBLIC_SITE_URL,
   "Missing environment variable: NEXT_PUBLIC_SITE_URL"
 );
 
-export const sanityViewerToken = assertValue(
-  process.env.SANITY_VIEWER_TOKEN,
-  "Missing environment variable: SANITY_VIEWER_TOKEN"
-);
+// export const sanityViewerToken = assertValue(
+//   process.env.SANITY_VIEWER_TOKEN,
+//   "Missing environment variable: SANITY_VIEWER_TOKEN"
+// );
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {

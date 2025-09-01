@@ -13,7 +13,7 @@ import {
   apiVersion,
   dataset,
   projectId,
-  sanityViewerToken,
+  // sanityViewerToken,
   siteUrl,
 } from "./src/constants";
 import { schema } from "./src/sanity/schemaTypes";
@@ -38,7 +38,7 @@ export default defineConfig({
       },
     }),
   ],
-  token: sanityViewerToken, // A token with read access
+  // token: sanityViewerToken, // A token with read access
   stega: {
     studioUrl: "/studio",
   },
