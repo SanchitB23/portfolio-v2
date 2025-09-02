@@ -10,7 +10,7 @@ import type {
   TProjectFacets,
   TProjectResult,
   TSearchParamsShape,
-  TThemeFlags,
+  TFeatureFlags,
 } from "@/sanity/types/content";
 import { ContentSourceMap } from "next-sanity";
 import { PageLink } from "./page-link";
@@ -32,7 +32,7 @@ type ProjectsPageSanityResponse = [
     tags: string[];
   },
   {
-    data: TThemeFlags;
+    data: TFeatureFlags;
     sourceMap: ContentSourceMap | null;
     tags: string[];
   },

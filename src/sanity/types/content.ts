@@ -65,7 +65,7 @@ export type TProjectFacets = {
   yearsRaw: string[];
 };
 
-export type TThemeFlags = { featureFlags?: Record<string, boolean> };
+export type TFeatureFlags = { featureFlags?: Record<string, boolean> };
 
 export type TSearchParamsShape = {
   q?: string;
