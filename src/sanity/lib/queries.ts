@@ -85,3 +85,17 @@ export const PROJECT_FACETS_QUERY = groq`
 export const THEME_FLAGS_QUERY = groq`*[_type=="themeSettings"][0]{
   featureFlags
 }`;
+
+export const FEATURED_PROJECTS_QUERY = groq`
+*[_type=="project" && featured == true]
+| order(coalesce(priority, 9999) asc, coalesce(date, _updatedAt) desc, _updatedAt desc)[0...6]{
+  _id,
+  title,
+  "slug": slug.current,
+  shortDesc,
+  date,
+  tech[]->{ _id, name, slug },
+  links{ github, live, caseStudy },
+  "coverUrl": cover.asset->url
+}
+`;

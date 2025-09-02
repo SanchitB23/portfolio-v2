@@ -58,6 +58,12 @@ export type TProject = {
   links?: { github?: string; live?: string; caseStudy?: string };
   coverUrl?: string;
 };
+
+export type TFeaturedProject = Omit<
+  TProject,
+  "longDesc" | "featured" | "priority" | "status"
+>;
+
 export type TProjectResult = { total: number; items: TProject[] };
 
 export type TProjectFacets = {
