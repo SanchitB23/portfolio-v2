@@ -6,7 +6,7 @@ export const SINGLETON_TYPES = [
   "themeSettings",
   "hero",
   "about",
-  "resume",
+  "resumeSettings",
   "contactSettings",
 ];
 
@@ -35,8 +35,10 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title("About")
         .child(S.document().schemaType("about").documentId("about")),
       S.listItem()
-        .title("Resume")
-        .child(S.document().schemaType("resume").documentId("resume")),
+        .title("Resume Settings")
+        .child(
+          S.document().schemaType("resumeSettings").documentId("resumeSettings")
+        ),
       S.listItem()
         .title("Contact Settings")
         .child(

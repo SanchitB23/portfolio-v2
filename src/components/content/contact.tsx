@@ -2,13 +2,13 @@ import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/live";
 import { CONTACT_SETTINGS_QUERY } from "@/sanity/lib/queries";
 import {
-  SanityResponse,
+  TSanityResponse,
   TContactSettings,
   TContactSettingsChannel,
 } from "@/sanity/types/content";
 
 export default async function Contact() {
-  const { data: c }: SanityResponse<TContactSettings> = await sanityFetch({
+  const { data: c }: TSanityResponse<TContactSettings> = await sanityFetch({
     query: CONTACT_SETTINGS_QUERY,
     tags: ["contactSettings"],
   });

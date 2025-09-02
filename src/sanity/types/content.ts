@@ -96,8 +96,14 @@ export type TContactSettingsChannel = {
 };
 
 // Generic Sanity response type
-export type SanityResponse<T> = {
+export type TSanityResponse<T> = {
   data: T;
   sourceMap: ContentSourceMap | null;
   tags: string[];
+};
+
+export type TResumeResponse = {
+  lastUpdated?: string;
+  url?: string;
+  note?: string;
 };
