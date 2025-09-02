@@ -5,11 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@portabletext/react": "^4.0.3",
+    "@portabletext/types": "^2.0.15",
     "@sanity/assist": "^5.0.0",
     "@sanity/client": "^7.10.0",
     "@sanity/image-url": "^1.2.0",
