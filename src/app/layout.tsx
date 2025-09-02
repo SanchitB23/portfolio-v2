@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { VisualEditing } from "next-sanity";
@@ -6,6 +5,7 @@ import { isLiveEditingEnabled, isVisualEditingEnabled } from "@/constants";
 import { SanityLive } from "@/sanity/lib/live";
 import { sanityFetch } from "@/sanity/lib/live";
 import { groq } from "next-sanity";
+import Script from "next/script";
 
 const SITE_QUERY = groq`*[_type=="siteSettings"][0]{ 
   title, 
@@ -63,7 +63,26 @@ export default function RootLayout({
         {children}
         {isVisualEditingEnabled ? <VisualEditing /> : null}
         {isLiveEditingEnabled ? <SanityLive /> : null}
+        <Script
+          id="jsonld-person"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSONLD) }}
+        />
       </body>
     </html>
   );
 }
+
+const PERSON_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sanchit Bhatnagar",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sanchitb23.in",
+  jobTitle: "Software Engineer",
+  worksFor: { "@type": "Organization", name: "Yum! Brands" },
+  sameAs: [
+    "https://x.com/sanchitb23",
+    "https://www.linkedin.com/in/sanchitb23",
+    "https://github.com/SanchitB23",
+  ],
+};
