@@ -1,12 +1,11 @@
-import Image from "next/image";
+import PT from "@/components/portable-text";
 import { sanityFetch } from "@/sanity/lib/live";
 import { HERO_QUERY } from "@/sanity/lib/queries";
-import PT from "@/components/portable-text";
-import type { HeroData } from "@/sanity/types/content";
-import { TypedObject } from "sanity";
+import type { THeroData } from "@/sanity/types/content";
+import Image from "next/image";
 
 export default async function Hero() {
-  const { data }: { data: HeroData } = await sanityFetch({
+  const { data }: { data: THeroData } = await sanityFetch({
     query: HERO_QUERY,
     tags: ["hero"],
   });
@@ -30,7 +29,7 @@ export default async function Hero() {
               {data.heading}
             </h1>
             <div className="max-w-2xl text-slate-300">
-              <PT value={data.subheading as TypedObject | TypedObject[]} />
+              <PT value={data.subheading} />
             </div>
 
             {data?.cta?.label && data?.cta?.href ? (

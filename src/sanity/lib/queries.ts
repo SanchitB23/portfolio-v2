@@ -8,3 +8,8 @@ export const HERO_QUERY = groq`*[_type=="hero"][0]{
   cta { label, href },
   "photoUrl": photo.asset->url
 }`;
+
+export const ABOUT_QUERY = groq`*[_type=="about"][0]{
+  body,
+  "skills": skills[defined(@._ref)]->{ _id, name, slug, icon }
+}`;

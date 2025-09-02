@@ -38,7 +38,6 @@ export default defineConfig({
         origin: siteUrl, // your site origin
       },
     }),
-    assist(),
   ],
   // token: sanityViewerToken, // A token with read access
   stega: {
