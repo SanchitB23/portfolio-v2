@@ -37,3 +37,39 @@ export type TExperience = {
   highlights: TypedObject | TypedObject[];
   logoUrl?: string;
 };
+
+export type TTagRef = {
+  _id: string;
+  name: string;
+  slug?: { current?: string };
+};
+
+export type TProject = {
+  _id: string;
+  title?: string;
+  slug?: string;
+  shortDesc?: string;
+  longDesc?: TypedObject | TypedObject[];
+  featured?: boolean;
+  priority?: number;
+  status?: "draft" | "published" | "archived";
+  date?: string | null;
+  tech?: TTagRef[];
+  links?: { github?: string; live?: string; caseStudy?: string };
+  coverUrl?: string;
+};
+export type TProjectResult = { total: number; items: TProject[] };
+
+export type TProjectFacets = {
+  tags: TTagRef[];
+  yearsRaw: string[];
+};
+
+export type TThemeFlags = { featureFlags?: Record<string, boolean> };
+
+export type TSearchParamsShape = {
+  q?: string;
+  tag?: string; // tag slug
+  year?: string; // e.g., "2024"
+  page?: string; // 1-based
+};
