@@ -24,6 +24,11 @@ export default defineType({
               type: "string",
               options: { list: ["anchor", "internal", "external"] },
             },
+            {
+              name: "enabled",
+              type: "boolean",
+              initialValue: true,
+            },
           ],
         },
       ],

@@ -22,6 +22,11 @@ export default defineType({
           initialValue: true,
         },
         { name: "useFancyPatternBg", type: "boolean", initialValue: true },
+        {
+          name: "outlineGlowOnProjectCards",
+          type: "boolean",
+          initialValue: false,
+        },
       ],
     }),
   ],
