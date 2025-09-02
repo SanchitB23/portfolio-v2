@@ -1,14 +1,20 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
-      - next
-      - develop
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main, next] # <-- only release from main & next
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
 
 jobs:
   release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
-      - name: Install dependencies
+          cache: pnpm
+      - name: Install deps
         run: pnpm install --frozen-lockfile
       - name: Semantic Release
         env:

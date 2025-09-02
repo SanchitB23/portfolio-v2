@@ -1,5 +1,10 @@
+// release.config.js (or semantic-release config)
 module.exports = {
-  branches: ["main", "next", { name: "develop", prerelease: true }],
+  branches: [
+    "main", // stable releases
+    { name: "next", prerelease: true }, // pre-releases (e.g., 1.3.0-next.1)
+    // do NOT include "develop" – no releases from integration
+  ],
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",

@@ -1,0 +1,23 @@
+{
+  "name": "branch naming (feature/* etc.)",
+  "target": "branch",
+  "source_type": "Repository",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["~ALL"],
+      "exclude": ["refs/heads/main", "refs/heads/next", "refs/heads/develop"]
+    }
+  },
+  "rules": [
+    {
+      "type": "branch_name_pattern",
+      "parameters": {
+        "name": "prefixes",
+        "negate": false,
+        "operator": "regex",
+        "pattern": "^(feat|fix|chore|refactor|docs|test|perf|ci)/[a-z0-9._-]+$"
+      }
+    }
+  ]
+}
