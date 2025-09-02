@@ -1,4 +1,5 @@
 import About from "@/components/content/about";
+import Experience from "@/components/content/experience";
 import Hero from "@/components/content/hero";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <Hero />
       <About />
+      <Experience />
     </main>
   );
 }

@@ -14,9 +14,26 @@ export type TAboutData = {
   skills: TSkill[];
 };
 
-export type TSkill = {
+type TSkill = {
   _id: string;
   name: string;
   slug: { current: string };
   icon?: string;
+};
+
+type Tag = { _id: string; name: string; slug?: { current: string } };
+
+export type TExperience = {
+  _id: string;
+  company?: string;
+  companyUrl?: string;
+  role?: string;
+  location?: string;
+  startDate?: string;
+  endDate?: string | null;
+  isCurrent?: boolean;
+  featured?: boolean;
+  tech?: Tag[];
+  highlights: TypedObject | TypedObject[];
+  logoUrl?: string;
 };
