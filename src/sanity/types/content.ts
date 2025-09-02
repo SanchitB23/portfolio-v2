@@ -1,3 +1,4 @@
+import { ContentSourceMap } from "next-sanity";
 import { TypedObject } from "sanity";
 
 // types/content.ts
@@ -78,4 +79,25 @@ export type TSearchParamsShape = {
   tag?: string; // tag slug
   year?: string; // e.g., "2024"
   page?: string; // 1-based
+};
+
+export type TContactSettings = {
+  headline: string;
+  subhead: string;
+  email: string;
+  successCopy: string;
+  errorCopy: string;
+  channels: TContactSettingsChannel[];
+};
+export type TContactSettingsChannel = {
+  label: string;
+  href: string;
+  key: string;
+};
+
+// Generic Sanity response type
+export type SanityResponse<T> = {
+  data: T;
+  sourceMap: ContentSourceMap | null;
+  tags: string[];
 };

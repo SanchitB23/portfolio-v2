@@ -7,7 +7,7 @@ export const SINGLETON_TYPES = [
   "hero",
   "about",
   "resume",
-  "contact",
+  "contactSettings",
 ];
 
 export const structure: StructureResolver = (S: StructureBuilder) =>
@@ -38,9 +38,12 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .title("Resume")
         .child(S.document().schemaType("resume").documentId("resume")),
       S.listItem()
-        .title("Contact")
-        .child(S.document().schemaType("contact").documentId("contact")),
-
+        .title("Contact Settings")
+        .child(
+          S.document()
+            .schemaType("contactSettings")
+            .documentId("contactSettings")
+        ),
       S.divider(),
 
       // All non-singleton document types

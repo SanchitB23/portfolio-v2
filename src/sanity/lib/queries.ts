@@ -99,3 +99,7 @@ export const FEATURED_PROJECTS_QUERY = groq`
   "coverUrl": cover.asset->url
 }
 `;
+
+export const CONTACT_SETTINGS_QUERY = groq`*[_type=="contactSettings"][0]{
+  headline, subhead, email, successCopy, errorCopy, channels
+}`;
