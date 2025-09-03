@@ -1,11 +1,9 @@
-import type { Metadata } from "next";
+import { isLiveEditingEnabled, isVisualEditingEnabled } from "@/constants";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { Analytics } from "@vercel/analytics/next";
+import { groq, VisualEditing } from "next-sanity";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { VisualEditing } from "next-sanity";
-import { isLiveEditingEnabled, isVisualEditingEnabled } from "@/constants";
-import { SanityLive } from "@/sanity/lib/live";
-import { sanityFetch } from "@/sanity/lib/live";
-import { groq } from "next-sanity";
 
 const SITE_QUERY = groq`*[_type=="siteSettings"][0]{ 
   title, 
@@ -63,6 +61,7 @@ export default function RootLayout({
         {children}
         {isVisualEditingEnabled ? <VisualEditing /> : null}
         {isLiveEditingEnabled ? <SanityLive /> : null}
+        <Analytics />
       </body>
     </html>
   );
