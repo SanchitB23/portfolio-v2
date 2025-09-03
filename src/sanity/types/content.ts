@@ -108,3 +108,10 @@ export type TResumeResponse = {
   url?: string;
   note?: string;
 };
+
+export type TSitemapQueryResult = {
+  projects: {
+    loc: string;
+    lastmod: string;
+  }[];
+};
