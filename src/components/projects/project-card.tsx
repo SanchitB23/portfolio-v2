@@ -38,6 +38,8 @@ export default function ProjectCard({
             sizes="(max-width:768px) 100vw, (max-width:1280px) 50vw, 33vw"
             className="object-cover"
             priority={p.featured}
+            placeholder={p.coverLqip ? "blur" : "empty"}
+            blurDataURL={p.coverLqip ?? undefined}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-xs text-slate-400">

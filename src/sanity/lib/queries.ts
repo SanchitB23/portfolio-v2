@@ -67,7 +67,8 @@ export const PROJECTS_QUERY = groq`
       date,
       tech[defined(@._ref)]->{ _id, name, slug },
       links{ github, live, caseStudy },
-      "coverUrl": cover.asset->url
+      "coverUrl": cover.asset->url,
+      "coverLqip": cover.asset->metadata.lqip
     }
 }
 `;
@@ -96,7 +97,8 @@ export const FEATURED_PROJECTS_QUERY = groq`
   date,
   tech[]->{ _id, name, slug },
   links{ github, live, caseStudy },
-  "coverUrl": cover.asset->url
+  "coverUrl": cover.asset->url,
+  "coverLqip": cover.asset->metadata.lqip
 }
 `;
 

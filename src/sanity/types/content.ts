@@ -58,6 +58,7 @@ export type TProject = {
   tech?: TTagRef[];
   links?: { github?: string; live?: string; caseStudy?: string };
   coverUrl?: string;
+  coverLqip?: string;
 };
 
 export type TFeaturedProject = Omit<
