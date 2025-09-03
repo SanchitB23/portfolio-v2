@@ -124,31 +124,34 @@ export default async function ProjectPage({
           project.links?.caseStudy) && (
           <div className="mt-6 flex flex-wrap gap-4">
             {project.links?.live && (
-              <Link
+              <a
                 href={project.links.live}
                 className="text-emerald-300 hover:text-emerald-200"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Live →
-              </Link>
+              </a>
             )}
             {project.links?.github && (
-              <Link
+              <a
                 href={project.links.github}
                 className="text-slate-300 hover:text-emerald-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 GitHub
-              </Link>
+              </a>
             )}
             {project.links?.caseStudy && (
-              <Link
+              <a
                 href={project.links.caseStudy}
                 className="text-slate-300 hover:text-emerald-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Case study
-              </Link>
+              </a>
             )}
           </div>
         )}
