@@ -117,13 +117,14 @@ export default async function Experience() {
                       {exp.role ?? "Engineer"}
                     </h3>
                     {exp.companyUrl ? (
-                      <Link
+                      <a
                         href={exp.companyUrl}
                         target="_blank"
                         className="text-slate-300 hover:text-emerald-300"
+                        rel="noopener noreferrer"
                       >
                         @ {exp.company}
-                      </Link>
+                      </a>
                     ) : (
                       <span className="text-slate-300">@ {exp.company}</span>
                     )}

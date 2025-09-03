@@ -94,22 +94,24 @@ export default function ProjectCard({
         {(p.links?.live || p.links?.github) && (
           <div className="mt-2 flex gap-3">
             {p.links?.live && (
-              <Link
+              <a
                 href={p.links.live}
                 className="text-emerald-300 hover:text-emerald-200"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Live →
-              </Link>
+              </a>
             )}
             {p.links?.github && (
-              <Link
+              <a
                 href={p.links.github}
                 className="text-slate-300 hover:text-emerald-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 GitHub
-              </Link>
+              </a>
             )}
           </div>
         )}

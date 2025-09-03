@@ -35,14 +35,15 @@ export default async function Contact() {
         {c.channels?.length ? (
           <div className="mt-6 flex justify-center gap-4 text-sm">
             {c.channels.map((ch: TContactSettingsChannel, i: number) => (
-              <Link
+              <a
                 key={i}
                 href={ch.href}
                 target="_blank"
                 className="text-slate-300 hover:text-emerald-300"
+                rel="noopener noreferrer"
               >
                 {ch.label} →
-              </Link>
+              </a>
             ))}
           </div>
         ) : null}
