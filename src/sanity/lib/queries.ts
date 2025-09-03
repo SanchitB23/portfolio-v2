@@ -121,7 +121,8 @@ export const RELATED_PROJECTS_QUERY = groq`
   _id, title, "slug": slug.current, shortDesc,
   "coverUrl": cover.asset->url,
   "coverLqip": cover.asset->metadata.lqip
-  
+}`;
+
 export const SITEMAP_QUERY = groq`{
   "projects": *[_type=="project" && defined(slug.current)]{
     "loc": "/projects/" + slug.current,
