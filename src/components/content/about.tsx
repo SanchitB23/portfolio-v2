@@ -12,12 +12,12 @@ export default async function About() {
   if (!data) return null;
 
   return (
-    <section id="about" className="relative bg-slate-950 py-20 sm:py-28">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
-        <h2 className="text-3xl font-bold tracking-tight text-emerald-400 sm:text-4xl mb-8">
-          About Me
+    <section id="about" className="relative bg-bg-primary py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="text-3xl font-bold tracking-tight text-primary-400 sm:text-4xl mb-8">
+          About
         </h2>
-        <div className="prose prose-invert max-w-none text-slate-300">
+        <div className="prose prose-invert max-w-none text-text-secondary">
           <PT value={data.body} />
         </div>
 
@@ -28,7 +28,7 @@ export default async function About() {
               {data.skills.map((s) => (
                 <span
                   key={s._id}
-                  className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-sm text-emerald-300 hover:bg-emerald-500/20 transition"
+                  className="inline-flex items-center rounded-full border border-border-accent bg-primary-100 px-3 py-1 text-sm text-text-accent hover:bg-primary-200 transition"
                 >
                   {s?.icon && <span className="mr-1">{s.icon}</span>}
                   {s?.name}

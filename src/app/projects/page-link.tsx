@@ -14,11 +14,11 @@ export function PageLink({
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams?.toString() || "");
   params.set("page", String(Math.max(1, page)));
-  if (disabled) return <span className="text-slate-600">{children}</span>;
+  if (disabled) return <span className="text-text-muted">{children}</span>;
   return (
     <Link
       href={`/projects?${params.toString()}`}
-      className="text-emerald-300 hover:text-emerald-200"
+      className="text-text-accent hover:text-text-accent-hover"
     >
       {children}
     </Link>

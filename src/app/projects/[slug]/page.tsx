@@ -57,7 +57,7 @@ export default async function ProjectPage({
   });
 
   return (
-    <section className="bg-slate-950 py-12">
+    <section className="bg-bg-primary py-12">
       <div className="mx-auto max-w-5xl px-6">
         {/* JSON-LD */}
         <ProjectJsonLd
@@ -68,16 +68,16 @@ export default async function ProjectPage({
           liveUrl={project.links?.live}
         />
 
-        <h1 className="text-3xl font-bold tracking-tight text-emerald-400 sm:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight text-primary-400 sm:text-4xl">
           {project.title}
         </h1>
         {project.shortDesc && (
-          <p className="mt-2 text-slate-300">{project.shortDesc}</p>
+          <p className="mt-2 text-text-secondary">{project.shortDesc}</p>
         )}
 
         {/* cover */}
         {project.coverUrl && (
-          <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl ring-1 ring-white/10">
+          <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl ring-1 ring-border-primary">
             <Image
               src={project.coverUrl}
               alt={project.title || ""}
@@ -91,7 +91,7 @@ export default async function ProjectPage({
         )}
 
         {/* meta */}
-        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-text-tertiary">
           {project.date && (
             <span>
               {new Date(project.date).toLocaleString("en-US", {
@@ -105,7 +105,7 @@ export default async function ProjectPage({
               {compact(project.tech).map((t) => (
                 <span
                   key={t._id}
-                  className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-300 text-xs"
+                  className="rounded-full border border-border-accent bg-primary-100 px-2.5 py-1 text-text-accent text-xs"
                 >
                   {t.name}
                 </span>
@@ -126,7 +126,7 @@ export default async function ProjectPage({
             {project.links?.live && (
               <a
                 href={project.links.live}
-                className="text-emerald-300 hover:text-emerald-200"
+                className="text-text-accent hover:text-text-accent-hover"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -136,7 +136,7 @@ export default async function ProjectPage({
             {project.links?.github && (
               <a
                 href={project.links.github}
-                className="text-slate-300 hover:text-emerald-300"
+                className="text-text-secondary hover:text-text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -146,7 +146,7 @@ export default async function ProjectPage({
             {project.links?.caseStudy && (
               <a
                 href={project.links.caseStudy}
-                className="text-slate-300 hover:text-emerald-300"
+                className="text-text-secondary hover:text-text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -159,23 +159,25 @@ export default async function ProjectPage({
         {/* related */}
         {related?.length ? (
           <div className="mt-12">
-            <h2 className="mb-4 text-xl font-semibold text-slate-100">
+            <h2 className="mb-4 text-xl font-semibold text-text-primary">
               Related projects
             </h2>
             <ul className="grid gap-6 sm:grid-cols-2">
               {related.map((r) => (
                 <li
                   key={r._id}
-                  className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10"
+                  className="rounded-2xl bg-bg-secondary p-4 ring-1 ring-border-primary"
                 >
                   <Link
                     href={`/projects/${r.slug}`}
-                    className="text-emerald-300 hover:text-emerald-200"
+                    className="text-text-accent hover:text-text-accent-hover"
                   >
                     {r.title}
                   </Link>
                   {r.shortDesc && (
-                    <p className="mt-1 text-sm text-slate-300">{r.shortDesc}</p>
+                    <p className="mt-1 text-sm text-text-secondary">
+                      {r.shortDesc}
+                    </p>
                   )}
                 </li>
               ))}

@@ -22,8 +22,8 @@ export default function ProjectCard({
     <Link
       href={`/projects/${p.slug}`}
       className={[
-        "group relative rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-sm",
-        outlineGlow ? "hover:ring-emerald-400/30 transition" : "",
+        "group relative rounded-2xl ring-1 ring-border-primary bg-bg-secondary backdrop-blur-sm",
+        outlineGlow ? "hover:ring-border-accent transition" : "",
         enableTilt
           ? "will-change-transform hover:-translate-y-1.5 hover:rotate-[0.2deg] duration-300"
           : "transition",
@@ -43,7 +43,7 @@ export default function ProjectCard({
             blurDataURL={p.coverLqip ?? undefined}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs text-slate-400">
+          <div className="flex h-full w-full items-center justify-center text-xs text-text-tertiary">
             —
           </div>
         )}
@@ -53,7 +53,7 @@ export default function ProjectCard({
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
             style={{
-              boxShadow: "inset 0 0 0 1px rgba(16,185,129,0.30)",
+              boxShadow: "inset 0 0 0 1px var(--color-border-accent)",
             }}
           />
         )}
@@ -62,20 +62,22 @@ export default function ProjectCard({
       {/* body */}
       <div className="space-y-2 p-4">
         <div className="flex items-center gap-2">
-          <h3 className="text-base font-semibold text-slate-100">{p.title}</h3>
+          <h3 className="text-base font-semibold text-text-primary">
+            {p.title}
+          </h3>
           {p.featured && (
-            <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-300">
+            <span className="rounded bg-primary-100 px-2 py-0.5 text-xs text-text-accent">
               featured
             </span>
           )}
           {formattedDate && (
-            <span className="ml-auto text-xs text-slate-400">
+            <span className="ml-auto text-xs text-text-tertiary">
               {formattedDate}
             </span>
           )}
         </div>
         {p.shortDesc && (
-          <p className="text-sm leading-6 text-slate-300">{p.shortDesc}</p>
+          <p className="text-sm leading-6 text-text-secondary">{p.shortDesc}</p>
         )}
 
         {tech && (
@@ -83,7 +85,7 @@ export default function ProjectCard({
             {tech.map((t) => (
               <span
                 key={t._id}
-                className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-300"
+                className="rounded-full border border-border-accent bg-primary-100 px-2.5 py-1 text-xs text-text-accent"
               >
                 {t?.name}
               </span>
@@ -96,7 +98,7 @@ export default function ProjectCard({
             {p.links?.live && (
               <a
                 href={p.links.live}
-                className="text-emerald-300 hover:text-emerald-200"
+                className="text-text-accent hover:text-text-accent-hover"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -106,7 +108,7 @@ export default function ProjectCard({
             {p.links?.github && (
               <a
                 href={p.links.github}
-                className="text-slate-300 hover:text-emerald-300"
+                className="text-text-secondary hover:text-text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
               >
