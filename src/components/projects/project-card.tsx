@@ -19,7 +19,8 @@ export default function ProjectCard({
   const tech = p.tech && p.tech.filter((item) => item !== null);
 
   return (
-    <div
+    <Link
+      href={`/projects/${p.slug}`}
       className={[
         "group relative rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-sm",
         outlineGlow ? "hover:ring-emerald-400/30 transition" : "",
@@ -113,7 +114,7 @@ export default function ProjectCard({
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
 
