@@ -1,6 +1,5 @@
 // sanity/schema/documents/project.ts
 import { defineType, defineField } from "sanity";
-
 export default defineType({
   name: "project",
   title: "Project",
@@ -17,7 +16,7 @@ export default defineType({
       options: { source: "title" },
       validation: (r) => r.required(),
     }),
-    defineField({ name: "cover", type: "image", options: { hotspot: true } }),
+    defineField({ name: "cover", type: "image", options: { hotspot: true } }), // or file if you prefer video/gif
     defineField({ name: "gallery", type: "array", of: [{ type: "image" }] }),
     defineField({ name: "shortDesc", type: "text" }),
     defineField({ name: "longDesc", type: "array", of: [{ type: "block" }] }),
@@ -42,14 +41,6 @@ export default defineType({
       type: "string",
       options: { list: ["active", "wip", "archived"] },
     }),
-    defineField({
-      name: "date",
-      title: "Date (Month & Year)",
-      type: "date",
-      options: {
-        dateFormat: "MMMM YYYY", // Studio shows Month Year; value is still full ISO
-      },
-      validation: (r) => r.required(),
-    }),
+    defineField({ name: "year", type: "number" }),
   ],
 });
