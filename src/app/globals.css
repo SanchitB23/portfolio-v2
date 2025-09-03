@@ -5,9 +5,44 @@
   --foreground: #171717;
 }
 
-@theme inline {
+@theme {
+  /* Base colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* Primary accent (emerald) */
+  --color-primary: #10b981;
+  --color-primary-50: rgba(16, 185, 129, 0.05);
+  --color-primary-100: rgba(16, 185, 129, 0.10);
+  --color-primary-200: rgba(16, 185, 129, 0.20);
+  --color-primary-300: rgba(16, 185, 129, 0.30);
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b981;
+  
+  /* Text colors */
+  --color-text-primary: #f1f5f9;    /* slate-100 */
+  --color-text-secondary: #cbd5e1;  /* slate-300 */
+  --color-text-tertiary: #94a3b8;   /* slate-400 */
+  --color-text-muted: #64748b;      /* slate-500 */
+  --color-text-accent: #6ee7b7;     /* emerald-300 */
+  --color-text-accent-hover: #a7f3d0; /* emerald-200 */
+  
+  /* Background colors */
+  --color-bg-primary: #020617;      /* slate-950 */
+  --color-bg-secondary: rgba(255, 255, 255, 0.05);
+  --color-bg-tertiary: rgba(255, 255, 255, 0.10);
+  
+  /* Border colors */
+  --color-border-primary: rgba(255, 255, 255, 0.10);
+  --color-border-accent: rgba(16, 185, 129, 0.30);
+  --color-border-accent-hover: rgba(16, 185, 129, 0.60);
+  
+  /* Special gradient colors */
+  --color-gradient-dark-start: #0b132b;
+  --color-gradient-dark-end: #0e1b2a;
+  --color-overlay-dark: rgba(0, 0, 0, 0.60);
+  
+  /* Typography */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

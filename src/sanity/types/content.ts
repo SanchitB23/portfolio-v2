@@ -1,0 +1,117 @@
+import { ContentSourceMap } from "next-sanity";
+import { TypedObject } from "sanity";
+
+// types/content.ts
+export type THeroData = {
+  variant?: "text_photo" | "split" | "media_bg";
+  heading?: string;
+  subheading: TypedObject | TypedObject[]; // Portable Text
+  cta?: { label?: string; href?: string };
+  photoUrl?: string;
+};
+
+export type TAboutData = {
+  body: TypedObject | TypedObject[];
+  skills: TSkill[];
+};
+
+type TSkill = {
+  _id: string;
+  name: string;
+  slug: { current: string };
+  icon?: string;
+};
+
+type Tag = { _id: string; name: string; slug?: { current: string } };
+
+export type TExperience = {
+  _id: string;
+  company?: string;
+  companyUrl?: string;
+  role?: string;
+  location?: string;
+  startDate?: string;
+  endDate?: string | null;
+  isCurrent?: boolean;
+  featured?: boolean;
+  tech?: Tag[];
+  highlights: TypedObject | TypedObject[];
+  logoUrl?: string;
+};
+
+export type TTagRef = {
+  _id: string;
+  name: string;
+  slug?: { current?: string };
+};
+
+export type TProject = {
+  _id: string;
+  title?: string;
+  slug?: string;
+  shortDesc?: string;
+  longDesc?: TypedObject | TypedObject[];
+  featured?: boolean;
+  priority?: number;
+  status?: "draft" | "published" | "archived";
+  date?: string | null;
+  tech?: TTagRef[];
+  links?: { github?: string; live?: string; caseStudy?: string };
+  coverUrl?: string;
+  coverLqip?: string;
+};
+
+export type TFeaturedProject = Omit<
+  TProject,
+  "longDesc" | "featured" | "priority" | "status"
+>;
+
+export type TProjectResult = { total: number; items: TProject[] };
+
+export type TProjectFacets = {
+  tags: TTagRef[];
+  yearsRaw: string[];
+};
+
+export type TFeatureFlags = { featureFlags?: Record<string, boolean> };
+
+export type TSearchParamsShape = {
+  q?: string;
+  tag?: string; // tag slug
+  year?: string; // e.g., "2024"
+  page?: string; // 1-based
+};
+
+export type TContactSettings = {
+  headline: string;
+  subhead: string;
+  email: string;
+  successCopy: string;
+  errorCopy: string;
+  channels: TContactSettingsChannel[];
+};
+export type TContactSettingsChannel = {
+  label: string;
+  href: string;
+  key: string;
+};
+
+// Generic Sanity response type
+export type TSanityResponse<T> = {
+  data: T;
+  sourceMap: ContentSourceMap | null;
+  tags: string[];
+};
+
+export type TResumeResponse = {
+  lastUpdated?: string;
+  url?: string;
+  note?: string;
+};
+
+export type TSitemapQueryResult = {
+  projects: {
+    loc: string;
+    lastmod: string;
+  }[];
+};

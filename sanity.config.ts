@@ -19,7 +19,6 @@ import {
 import { schema } from "./src/sanity/schemaTypes";
 import { SINGLETON_TYPES, structure } from "./src/sanity/structure";
 import { presentationTool } from "sanity/presentation";
-import { assist } from "@sanity/assist";
 
 export default defineConfig({
   basePath: "/admin/studio",
@@ -38,7 +37,6 @@ export default defineConfig({
         origin: siteUrl, // your site origin
       },
     }),
-    assist(),
   ],
   // token: sanityViewerToken, // A token with read access
   stega: {
