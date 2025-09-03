@@ -1,6 +1,7 @@
 "use client";
 
 import { TProjectFacets } from "@/sanity/types/content";
+import { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useTransition } from "react";
 
@@ -16,7 +17,7 @@ export default function ProjectsFilter({ tags, yearsRaw }: TProjectFacets) {
       if (value) next.set(key, value);
       else next.delete(key);
       next.delete("page"); // reset pagination on filter change
-      start(() => router.replace(`${pathname}?${next.toString()}`));
+      start(() => router.replace(`${pathname}?${next.toString()}` as Route));
     },
     [sp, pathname, router, start]
   );

@@ -21,7 +21,11 @@ const components: PortableTextComponents = {
   },
 };
 
-export default function PT({ value }: { value: TypedObject | TypedObject[] }) {
+export default function PT({
+  value,
+}: {
+  value: TypedObject | TypedObject[] | undefined;
+}) {
   if (!value) return null;
   return <PortableText value={value} components={components} />;
 }

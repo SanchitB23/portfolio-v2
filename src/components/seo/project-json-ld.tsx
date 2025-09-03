@@ -8,8 +8,8 @@ export default function ProjectJsonLd({
   repoUrl,
   liveUrl,
 }: {
-  name: string;
-  slug: string;
+  name?: string;
+  slug?: string;
   description?: string;
   repoUrl?: string;
   liveUrl?: string;

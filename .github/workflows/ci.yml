@@ -58,7 +58,7 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
       - name: TypeScript
-        run: pnpm exec tsc --noEmit
+        run: pnpm exec next typegen && pnpm run type-check
 
   build:
     name: build

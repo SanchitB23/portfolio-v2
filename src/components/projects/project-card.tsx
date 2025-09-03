@@ -19,7 +19,8 @@ export default function ProjectCard({
   const tech = p.tech && p.tech.filter((item) => item !== null);
 
   return (
-    <div
+    <Link
+      href={`/projects/${p.slug}`}
       className={[
         "group relative rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-sm",
         outlineGlow ? "hover:ring-emerald-400/30 transition" : "",
@@ -38,6 +39,8 @@ export default function ProjectCard({
             sizes="(max-width:768px) 100vw, (max-width:1280px) 50vw, 33vw"
             className="object-cover"
             priority={p.featured}
+            placeholder={p.coverLqip ? "blur" : "empty"}
+            blurDataURL={p.coverLqip ?? undefined}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-xs text-slate-400">
@@ -91,27 +94,29 @@ export default function ProjectCard({
         {(p.links?.live || p.links?.github) && (
           <div className="mt-2 flex gap-3">
             {p.links?.live && (
-              <Link
+              <a
                 href={p.links.live}
                 className="text-emerald-300 hover:text-emerald-200"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Live →
-              </Link>
+              </a>
             )}
             {p.links?.github && (
-              <Link
+              <a
                 href={p.links.github}
                 className="text-slate-300 hover:text-emerald-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 GitHub
-              </Link>
+              </a>
             )}
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
 
