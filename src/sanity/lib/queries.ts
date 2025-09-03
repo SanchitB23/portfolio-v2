@@ -103,3 +103,10 @@ export const FEATURED_PROJECTS_QUERY = groq`
 export const CONTACT_SETTINGS_QUERY = groq`*[_type=="contactSettings"][0]{
   headline, subhead, email, successCopy, errorCopy, channels
 }`;
+
+export const SITEMAP_QUERY = groq`{
+  "projects": *[_type=="project" && defined(slug.current)]{
+    "loc": "/projects/" + slug.current,
+    "lastmod": _updatedAt
+  } | order(_updatedAt desc)
+}`;
