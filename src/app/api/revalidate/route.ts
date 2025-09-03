@@ -1,35 +1,89 @@
 // app/api/revalidate/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
+import crypto from "crypto";
 
-export async function POST(req: NextRequest) {
+type TCustomRequest = NextRequest & { __BODY: string };
+
+function verifyHmac(req: TCustomRequest, secret: string) {
+  const signature = req.headers.get("x-sanity-signature"); // set in Sanity webhook (Advanced)
+  if (!signature) return false;
+  const body = req.__BODY ?? ""; // we’ll re-read below if empty
+  const hmac = crypto.createHmac("sha256", secret).update(body).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(hmac));
+}
+
+export async function POST(req: TCustomRequest) {
   const secret = process.env.REVALIDATE_SECRET;
+  if (!secret)
+    return NextResponse.json(
+      { ok: false, error: "No secret configured" },
+      { status: 500 }
+    );
+
   const url = new URL(req.url);
   const signature =
     req.headers.get("x-sanity-signature") ||
     req.headers.get("x-vercel-signature") ||
     url.searchParams.get("secret");
 
-  // Simple shared secret check (configure this in the Sanity webhook URL as ?secret=...)
-  if (!secret || signature !== secret) {
+  if (signature !== secret) {
     return NextResponse.json(
       { ok: false, error: "Unauthorized" },
       { status: 401 }
     );
   }
 
-  // Revalidate by type
+  // Read raw JSON string for HMAC
+  const bodyText = await req.text();
+  (req as TCustomRequest).__BODY = bodyText;
+  let parsed: Record<string, unknown> = {};
   try {
-    // Basic: always revalidate project + tag + singletons commonly used on home
-    revalidateTag("project");
-    revalidateTag("tag");
-    revalidateTag("about");
-    revalidateTag("experience");
-    revalidateTag("themeSettings");
-    revalidateTag("contactSettings");
+    parsed = JSON.parse(bodyText);
+  } catch {}
 
-    return NextResponse.json({ ok: true });
-  } catch (e) {
-    return NextResponse.json({ ok: false, error: String(e) }, { status: 500 });
+  // Optional HMAC verification (enable in webhook)
+  const hmacOk = verifyHmac(req, secret);
+  if (!hmacOk) {
+    return NextResponse.json(
+      { ok: false, error: "Bad signature" },
+      { status: 401 }
+    );
   }
+
+  // SCOPED revalidation
+  // Sanity payload: check which types changed and revalidate only those tags
+  const types = new Set<string>();
+  if (typeof parsed?._type === "string") types.add(parsed._type as string); // single doc
+  if (Array.isArray(parsed?.ids) && parsed?.transition) {
+    // draft->publish
+    // fallback to generic tags if needed
+  }
+  // Minimal mapping
+  const map: Record<string, string[]> = {
+    project: ["project", "tag"],
+    tag: ["tag", "project"],
+    about: ["about"],
+    experience: ["experience"],
+    themeSettings: ["themeSettings"],
+    contactSettings: ["contactSettings"],
+    resumeSettings: ["resumeSettings"],
+  };
+
+  if (types.size === 0) {
+    // generic catch-all if payload doesn’t include _type
+    [
+      "project",
+      "tag",
+      "about",
+      "experience",
+      "themeSettings",
+      "contactSettings",
+      "resumeSettings",
+    ].forEach(revalidateTag);
+  } else {
+    for (const t of types) (map[t] ?? [t]).forEach(revalidateTag);
+  }
+
+  return NextResponse.json({ ok: true });
 }
