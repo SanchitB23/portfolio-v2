@@ -67,7 +67,8 @@ export const PROJECTS_QUERY = groq`
       date,
       tech[defined(@._ref)]->{ _id, name, slug },
       links{ github, live, caseStudy },
-      "coverUrl": cover.asset->url
+      "coverUrl": cover.asset->url,
+      "coverLqip": cover.asset->metadata.lqip
     }
 }
 `;
@@ -96,12 +97,30 @@ export const FEATURED_PROJECTS_QUERY = groq`
   date,
   tech[]->{ _id, name, slug },
   links{ github, live, caseStudy },
-  "coverUrl": cover.asset->url
+  "coverUrl": cover.asset->url,
+  "coverLqip": cover.asset->metadata.lqip
 }
 `;
 
 export const CONTACT_SETTINGS_QUERY = groq`*[_type=="contactSettings"][0]{
   headline, subhead, email, successCopy, errorCopy, channels
+}`;
+
+export const PROJECT_BY_SLUG_QUERY = groq`
+*[_type=="project" && slug.current == $slug][0]{
+  _id, title, "slug": slug.current, shortDesc, longDesc, date,
+  tech[]->{ _id, name, slug },
+  links{ github, live, caseStudy },
+  "coverUrl": cover.asset->url,
+  "coverLqip": cover.asset->metadata.lqip
+}`;
+
+export const RELATED_PROJECTS_QUERY = groq`
+*[_type=="project" && _id != $id && count(tech[@._ref in $techIds]) > 0]
+| order(coalesce(priority, 9999) asc, coalesce(date, _updatedAt) desc)[0...3]{
+  _id, title, "slug": slug.current, shortDesc,
+  "coverUrl": cover.asset->url,
+  "coverLqip": cover.asset->metadata.lqip
 }`;
 
 export const SITEMAP_QUERY = groq`{
