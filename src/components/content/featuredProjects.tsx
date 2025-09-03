@@ -42,9 +42,9 @@ export default async function FeaturedProjects() {
   const outlineGlow = !!flags.outlineGlowOnProjectCards;
 
   return (
-    <section id="featured" className="bg-slate-950 py-20 sm:py-28">
+    <section id="featured" className="bg-bg-primary py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="mb-8 text-3xl font-bold tracking-tight text-emerald-400 sm:text-4xl">
+        <h2 className="mb-8 text-3xl font-bold tracking-tight text-primary-400 sm:text-4xl">
           Featured Projects
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

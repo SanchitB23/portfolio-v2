@@ -5,7 +5,7 @@ import type { TypedObject } from "@portabletext/types";
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="text-base leading-7 text-slate-300">{children}</p>
+      <p className="text-base leading-7 text-text-secondary">{children}</p>
     ),
     h2: ({ children }) => <h2 className="text-xl font-semibold">{children}</h2>,
   },
