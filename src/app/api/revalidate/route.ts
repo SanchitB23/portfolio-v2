@@ -13,7 +13,7 @@ function verifyHmac(req: TCustomRequest, secret: string) {
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(hmac));
 }
 
-export async function POST(req: TCustomRequest) {
+export async function POST(req: NextRequest) {
   const secret = process.env.REVALIDATE_SECRET;
   if (!secret)
     return NextResponse.json(
@@ -43,7 +43,7 @@ export async function POST(req: TCustomRequest) {
   } catch {}
 
   // Optional HMAC verification (enable in webhook)
-  const hmacOk = verifyHmac(req, secret);
+  const hmacOk = verifyHmac(req as TCustomRequest, secret);
   if (!hmacOk) {
     return NextResponse.json(
       { ok: false, error: "Bad signature" },
