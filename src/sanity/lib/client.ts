@@ -1,10 +1,17 @@
-import { createClient } from 'next-sanity'
+import { createClient } from "next-sanity";
 
-import { apiVersion, dataset, projectId } from '@/constants'
+import { apiVersion, dataset, projectId } from "@/constants";
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
   useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
-})
+});
+
+export const isrClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false, // Disable CDN for ISR
+});
