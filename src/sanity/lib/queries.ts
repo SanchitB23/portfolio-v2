@@ -107,6 +107,6 @@ export const CONTACT_SETTINGS_QUERY = groq`*[_type=="contactSettings"][0]{
 export const SITEMAP_QUERY = groq`{
   "projects": *[_type=="project" && defined(slug.current)]{
     "loc": "/projects/" + slug.current,
-    "_updatedAt"
+    "lastmod": _updatedAt
   } | order(_updatedAt desc)
 }`;

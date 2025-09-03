@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const projectPages: MetadataRoute.Sitemap = (projects ?? []).map((p) => ({
     url: `${siteUrl}${p.loc}`,
-    lastModified: p._updatedAt ? new Date(p._updatedAt) : undefined,
+    lastModified: p.lastmod ? new Date(p.lastmod) : undefined,
   }));
 
   return [...staticPages, ...projectPages];

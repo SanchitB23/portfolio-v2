@@ -111,6 +111,6 @@ export type TResumeResponse = {
 export type TSitemapQueryResult = {
   projects: {
     loc: string;
-    _updatedAt: string;
+    lastmod: string;
   }[];
 };
