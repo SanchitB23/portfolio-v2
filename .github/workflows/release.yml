@@ -5,6 +5,10 @@ on:
     workflows: ["CI"]
     types: [completed]
     branches: [main, next] # <-- only release from main & next
+  push:
+    branches:
+      - main
+      - next
 
 permissions:
   contents: write
