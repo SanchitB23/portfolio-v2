@@ -2,13 +2,19 @@ name: CI
 
 on:
   push:
-    branches: [main, next, develop]
+    branches:
+      - main
+      - next
+      - develop
     paths-ignore:
       - "README.md"
       - "docs/**"
       - ".github/ISSUE_TEMPLATE/**"
   pull_request:
-    branches: [main, next, develop]
+    branches:
+      - main
+      - next
+      - develop
 
 permissions:
   contents: read

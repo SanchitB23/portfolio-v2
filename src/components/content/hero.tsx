@@ -19,16 +19,20 @@ export default async function Hero() {
       {/* Subtle background gradient */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_40rem_at_80%_-10%,rgba(16,185,129,0.12),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(60rem 40rem at 80% -10%, rgba(16, 185, 129, 0.12), transparent 60%)",
+        }}
       />
       <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28 lg:py-32">
         <div className="grid items-center gap-10 md:grid-cols-[1.2fr_0.8fr]">
           {/* Text column */}
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
               {data.heading}
             </h1>
-            <div className="max-w-2xl text-slate-300">
+            <div className="max-w-2xl text-text-secondary">
               <PT value={data.subheading} />
             </div>
 
@@ -36,7 +40,7 @@ export default async function Hero() {
               <div>
                 <a
                   href={data.cta.href}
-                  className="inline-flex items-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-2.5 text-emerald-200 hover:bg-emerald-500/20 transition"
+                  className="inline-flex items-center rounded-xl border border-border-accent bg-primary-100 px-5 py-2.5 text-text-accent hover:bg-primary-200 transition"
                 >
                   {data.cta.label}
                 </a>
@@ -47,7 +51,7 @@ export default async function Hero() {
           {/* Portrait column */}
           {variant === "text_photo" && data?.photoUrl ? (
             <div className="mx-auto w-44 sm:w-56 md:w-64 lg:w-72">
-              <div className="relative aspect-square overflow-hidden rounded-2xl ring-1 ring-white/10">
+              <div className="relative aspect-square overflow-hidden rounded-2xl ring-1 ring-border-primary">
                 <Image
                   src={data.photoUrl}
                   alt="Portrait"

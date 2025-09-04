@@ -89,9 +89,9 @@ export default async function ProjectsPage(props: {
   const outlineGlow = !!flags.outlineGlowOnProjectCards;
 
   return (
-    <section className="bg-slate-950 py-16">
+    <section className="bg-bg-primary py-16">
       <div className="mx-auto max-w-6xl px-6">
-        <h1 className="mb-6 text-3xl font-bold tracking-tight text-emerald-400 sm:text-4xl">
+        <h1 className="mb-6 text-3xl font-bold tracking-tight text-primary-400 sm:text-4xl">
           All Projects
         </h1>
 
@@ -119,7 +119,7 @@ export default async function ProjectsPage(props: {
                 <PageLink page={page - 1} disabled={page <= 1}>
                   ← Prev
                 </PageLink>
-                <span className="text-slate-400">
+                <span className="text-text-tertiary">
                   Page {page} / {totalPages}
                 </span>
                 <PageLink page={page + 1} disabled={page >= totalPages}>
@@ -129,7 +129,7 @@ export default async function ProjectsPage(props: {
             )}
           </>
         ) : (
-          <p className="text-slate-400">No projects match your filters.</p>
+          <p className="text-text-tertiary">No projects match your filters.</p>
         )}
       </div>
     </section>

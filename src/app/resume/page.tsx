@@ -11,12 +11,12 @@ export default async function ResumePage() {
   });
 
   return (
-    <section className="bg-slate-950 py-16">
+    <section className="bg-bg-primary py-16">
       <div className="mx-auto max-w-3xl px-6">
-        <h1 className="text-3xl font-bold tracking-tight text-emerald-400 sm:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight text-primary-400 sm:text-4xl">
           Resume
         </h1>
-        <p className="mt-2 text-slate-300">
+        <p className="mt-2 text-text-secondary">
           Last updated:{" "}
           {r?.lastUpdated
             ? new Date(r.lastUpdated).toLocaleDateString("en-US", {
@@ -28,7 +28,7 @@ export default async function ResumePage() {
         </p>
         {r?.url ? (
           <a
-            className="mt-6 inline-block rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-slate-200 hover:ring-emerald-400/30"
+            className="mt-6 inline-block rounded-xl border border-border-primary bg-bg-secondary px-4 py-2 text-text-secondary hover:ring-border-accent"
             href={r.url}
             target="_blank"
             rel="noopener"
@@ -36,9 +36,9 @@ export default async function ResumePage() {
             Download PDF
           </a>
         ) : (
-          <p className="mt-6 text-slate-400">Upload a PDF in Studio.</p>
+          <p className="mt-6 text-text-tertiary">Upload a PDF in Studio.</p>
         )}
-        {r?.note && <p className="mt-4 text-slate-300">{r.note}</p>}
+        {r?.note && <p className="mt-4 text-text-secondary">{r.note}</p>}
       </div>
     </section>
   );
